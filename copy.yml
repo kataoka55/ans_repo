@@ -1,0 +1,20 @@
+---
+- name: Copy file to Windows server
+  hosts: vps_win
+  gather_facts: no
+  tasks:
+    - name: Copy to C:\Temp
+      win_copy:
+        src: ./test.txt
+        dest: C:\Temp\test.txt
+
+    - name: filechk
+      win_shell: |
+        dir C:\Temp
+      register: result
+
+    - name: msg
+      debug:
+        msg: "{{ result }}"
+
+
