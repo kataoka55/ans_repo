@@ -1,0 +1,13 @@
+---
+- name: ホスト名確認
+  hosts: vps_lin
+  become: true
+  tasks:
+    - name: hostname
+      shell: uname -n
+      register: result
+      ignore_errors: yes
+
+    - name: msg
+      debug:
+        msg: "{{ result }}"
