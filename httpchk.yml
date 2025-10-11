@@ -1,0 +1,21 @@
+---
+- name: HTTP チェックテスト
+  hosts: vps_lin
+  become: true
+  tasks:
+    - name: http start
+      shell: systemctl start httpd
+
+    - name: statuschk
+      shell: systemctl status httpd
+      register: result
+      ignore_errors: yes
+
+    - name: msg
+      debug:
+        msg: "{{ result }}"
+
+    - name: resultchk
+      debug:
+        msg: "成功"
+      when: result.rc == 0
