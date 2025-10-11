@@ -1,0 +1,11 @@
+[vps_lin]
+vps_lin
+[vps_lin:vars]
+ansible_host=160.16.55.10
+ansible_port=20022
+ansible_user=yosuke
+ansible_ssh_pass=Namasan@7110
+ansible_become=true
+ansible_become_user=root
+ansible_become_method=sudo
+ansible_become_pass=Namasan@7110
