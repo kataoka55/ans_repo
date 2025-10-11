@@ -1,7 +1,6 @@
 ---
 - name: ホスト名確認
   hosts: vps_win
-  become: true
   tasks:
     - name: hostname
       win_shell: hostname
