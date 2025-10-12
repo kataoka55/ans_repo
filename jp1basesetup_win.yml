@@ -5,7 +5,7 @@
 
     - name: JP1ユーザー作成（jp1admin）
       win_command: |
-        cmd.exe /c ""C:\Program Files (x86)\Hitachi\JP1Base\bin\jbsadduser.exe" jp1admin /p jp1admin /f"
+        cmd.exe /c ""C:\Program Files (x86)\Hitachi\JP1Base\bin\jbsadduser.exe" -p jp1admin jp1admin"
 
     - name: OSユーザーとJP1ユーザーのマッピング
       win_command: |
