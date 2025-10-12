@@ -1,5 +1,5 @@
 - name: JP1/Base 初期セットアップ
-  hosts: windows
+  hosts: vps_win
   gather_facts: no
   tasks:
 
