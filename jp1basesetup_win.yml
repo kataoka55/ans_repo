@@ -1,0 +1,27 @@
+- name: JP1/Base 初期セットアップ
+  hosts: windows
+  gather_facts: no
+  tasks:
+
+    - name: JP1ユーザー作成（jp1admin）
+      win_command: |
+        cmd.exe /c "C:\Program Files\Hitachi\JP1Base\bin\jbsadduser.exe jp1admin /p jp1admin"
+
+    - name: OSユーザーとJP1ユーザーのマッピング
+      win_command: |
+        cmd.exe /c "C:\Program Files\Hitachi\JP1Base\bin\jbsusermapping.exe /add /jp1user jp1admin /osuser Administrator /ospassword Namasan_7110"
+
+    - name: JP1/Baseサービス起動
+      win_service:
+        name: JP1_BASE
+        start_mode: auto
+        state: started
+
+    - name: JP1/Baseステータス確認
+      win_command: |
+        cmd.exe /c "C:\Program Files\Hitachi\JP1Base\bin\jbs_spmd_status.exe"
+      register: jp1_status
+
+    - name: JP1/Baseステータス表示
+      debug:
+        var: jp1_status.stdout
