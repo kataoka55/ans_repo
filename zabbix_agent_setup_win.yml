@@ -3,7 +3,7 @@
   hosts: vps_win
   gather_facts: no
   vars:
-    zabbix_agent_url: "https://cdn.zabbix.com/zabbix/binaries/stable/6.0/6.0.21/zabbix_agent-6.0.21-windows-amd64-openssl.msi"
+    zabbix_agent_url: "https://cdn.zabbix.com/zabbix/binaries/stable/6.0/6.0.42/zabbix_agent-6.0.42-windows-amd64-openssl.msi"
     zabbix_agent_installer: "C:\\Temp\\zabbix_agent.msi"
     zabbix_server: "153.121.45.207"
     zabbix_hostname: "{{ ansible_hostname }}"
