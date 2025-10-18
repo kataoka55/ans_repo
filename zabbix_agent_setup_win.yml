@@ -22,8 +22,7 @@
     - name: Install Zabbix Agent
       win_package:
         path: "{{ zabbix_agent_installer }}"
-        arguments: >
-          /quiet
+        arguments: /qn
         state: present
 
     - name: Ensure Zabbix Agent service is running
