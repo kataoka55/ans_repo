@@ -1,0 +1,12 @@
+---
+- name: ホスト名確認
+  hosts: vps_win
+  tasks:
+    - name: ping
+      win_ping:
+      register: result
+      ignore_errors: yes
+
+    - name: msg
+      debug:
+        msg: "{{ result }}"
