@@ -1,0 +1,35 @@
+---
+- name: Install Zabbix Agent on Windows
+  hosts: vps_win
+  gather_facts: no
+  vars:
+    zabbix_agent_url: "https://cdn.zabbix.com/zabbix/binaries/stable/6.0/6.0.21/zabbix_agent-6.0.21-windows-amd64-openssl.msi"
+    zabbix_agent_installer: "C:\\Temp\\zabbix_agent.msi"
+    zabbix_server: "153.121.45.207"
+    zabbix_hostname: "{{ ansible_hostname }}"
+
+  tasks:
+    - name: Create Temp directory
+      win_file:
+        path: C:\Temp
+        state: directory
+
+    - name: Download Zabbix Agent MSI
+      win_get_url:
+        url: "{{ zabbix_agent_url }}"
+        dest: "{{ zabbix_agent_installer }}"
+
+    - name: Install Zabbix Agent
+      win_package:
+        path: "{{ zabbix_agent_installer }}"
+        arguments: >
+          /quiet
+          SERVER="{{ zabbix_server }}"
+          HOSTNAME="{{ zabbix_hostname }}"
+        state: present
+
+    - name: Ensure Zabbix Agent service is running
+      win_service:
+        name: "Zabbix Agent"
+        start_mode: auto
+        state: started
