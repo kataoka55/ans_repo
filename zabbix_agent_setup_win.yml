@@ -24,8 +24,6 @@
         path: "{{ zabbix_agent_installer }}"
         arguments: >
           /quiet
-          SERVER="{{ zabbix_server }}"
-          HOSTNAME="{{ zabbix_hostname }}"
         state: present
 
     - name: Ensure Zabbix Agent service is running
